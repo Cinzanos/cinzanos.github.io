@@ -96,29 +96,32 @@ footer {
   animation: fadeIn 1s ease-out;
 }
 
-/* Анимация для движения картинок слева направо */
-@keyframes slideRight {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
+/* Анимация для прокрутки изображений слева направо */
 .project-carousel {
   display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   width: 100%;
   margin-top: 30px;
+}
+
+.project-carousel-inner {
+  display: flex;
+  animation: scrollLeftToRight 30s linear infinite;
 }
 
 .project-carousel img {
   width: 200px;
   height: 200px;
   object-fit: cover;
-  margin: 0 15px;
-  animation: slideRight 20s linear infinite;
+  margin-right: 20px;
+}
+
+/* Анимация для движения изображений */
+@keyframes scrollLeftToRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
