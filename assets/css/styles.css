@@ -114,6 +114,7 @@ footer {
 
 .project-carousel-inner {
   display: flex;
+  width: max-content;
   animation: scrollLeftToRight 30s linear infinite;
 }
 
