@@ -124,12 +124,12 @@ footer {
   margin-left: 20px; 
 }
 
-@keyframes scrollRightToLeft {
-  100% {
-    transform: translateX(-100%);
-  }
+@keyframes scrollLeftToRight {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 
