@@ -114,7 +114,7 @@ footer {
 
 .project-carousel-inner {
   display: flex;
-  animation: scrollRightToLeft 30s linear infinite;
+  animation: scrollLeftToRight 30s linear infinite;
 }
 
 .project-carousel img {
@@ -126,12 +126,13 @@ footer {
 
 @keyframes scrollLeftToRight {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
 }
+
 
 .contact-container {
   position: absolute;
