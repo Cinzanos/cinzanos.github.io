@@ -127,9 +127,8 @@ footer {
 
 .contact-container {
   position: absolute;
-  top: 80px;  /* Это отступ под шапку */
-  right: 20px;  /* Отступ от правого края */
-  background-color: rgba(0, 0, 0, 0.8);
+  top: 80px;  /* Отступ под шапку */
+  left: 20px;  /* Отступ от левого края */
   padding: 20px;
   border-radius: 8px;
   text-align: left;
