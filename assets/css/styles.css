@@ -1,98 +1,118 @@
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-  }
-  
-  header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: #1e1e1e;
-    padding: 15px;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  }
-  
-  header a {
-    color: #e0e0e0;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
-  }
-  
-  header a:hover {
-    color: #ffd700;
-  }
-  
-  .container {
-    padding-top: 80px;
-    text-align: center;
-  }
-  
-  h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    color: #ffd700;
-  }
-  
-  .projects {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 50px;
-  }
-  
-  .project {
-    background-color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    width: 250px;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .project:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-  }
-  
-  .project h3 {
-    margin: 10px 0;
-    color: #ffd700;
-  }
-  
-  .project a {
-    color: #e0e0e0;
-    text-decoration: none;
-    font-size: 16px;
-    display: inline-block;
-    margin-top: 10px;
-    transition: color 0.3s ease;
-  }
-  
-  .project a:hover {
-    color: #ffd700;
-  }
-  
-  footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 14px;
-    color: #999;
-  }
-  
-  /* Анимация */
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  
-  .fade-in {
-    animation: fadeIn 1s ease-out;
-  }
-  
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #1e1e1e;
+  padding: 15px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+header a {
+  color: #e0e0e0;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+header a:hover {
+  color: #ffd700;
+}
+
+.container {
+  padding-top: 80px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #ffd700;
+}
+
+.projects {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.project {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.project h3 {
+  margin: 10px 0;
+  color: #ffd700;
+}
+
+.project a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-block;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.project a:hover {
+  color: #ffd700;
+}
+
+footer {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #999;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+/* Анимация для движения картинок по кругу */
+@keyframes rotateAround {
+  0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+}
+
+.project-carousel {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  animation: rotateAround 10s linear infinite;
+}
+
+.project-carousel img {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
