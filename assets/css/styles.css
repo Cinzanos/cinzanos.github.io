@@ -126,7 +126,7 @@ footer {
 }
 
 .contact-container {
-  position: absolute;
+  position: center;
   top: 80px;  /* Отступ под шапку */
   left: 20px;  /* Отступ от левого края */
   padding: 20px;
