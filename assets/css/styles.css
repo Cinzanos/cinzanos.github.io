@@ -96,7 +96,7 @@ footer {
   animation: fadeIn 1s ease-out;
 }
 
-/* Анимация для движения картинок по кругу */
+/* Анимация для прокрутки изображений слева направо */
 .project-carousel {
   display: flex;
   overflow: hidden;
@@ -106,6 +106,7 @@ footer {
 
 .project-carousel-inner {
   display: flex;
+  animation: scrollLeftToRight 30s linear infinite;
 }
 
 .project-carousel img {
@@ -113,10 +114,9 @@ footer {
   height: 200px;
   object-fit: cover;
   margin-right: 20px;
-  animation: scrollLeftToRight 10s linear infinite; /* Ускорили движение */
 }
 
-/* Анимация для движения изображений слева направо */
+/* Анимация для движения изображений */
 @keyframes scrollLeftToRight {
   0% {
     transform: translateX(0);
@@ -124,17 +124,4 @@ footer {
   100% {
     transform: translateX(-100%);
   }
-}
-
-/* Задержка для каждого изображения */
-.project-carousel img:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.project-carousel img:nth-child(2) {
-  animation-delay: 2s; /* Задержка для второго изображения */
-}
-
-.project-carousel img:nth-child(3) {
-  animation-delay: 4s; /* Задержка для третьего изображения */
 }
