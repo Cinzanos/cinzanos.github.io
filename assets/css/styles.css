@@ -124,3 +124,38 @@ footer {
     transform: translateX(-100%);
   }
 }
+
+.contact-container {
+  position: absolute;
+  top: 80px;  /* Это отступ под шапку */
+  right: 20px;  /* Отступ от правого края */
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 300px;
+}
+
+.contact-container h1 {
+  font-size: 24px;
+  color: #ffd700;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+ul li a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  color: #e0e0e0;
+}
