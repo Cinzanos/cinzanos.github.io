@@ -217,3 +217,15 @@ ul li a:hover {
 .skill p {
   color: #e0e0e0;
 }
+
+.skill h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Расстояние между иконкой и текстом */
+}
+
+.skill i {
+  font-size: 24px;
+  color: #ffd700;
+}
