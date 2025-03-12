@@ -106,22 +106,22 @@ footer {
 
 .project-carousel-inner {
   display: flex;
-  animation: scrollLeftToRight 30s linear infinite;
+  animation: scrollRightToLeft 30s linear infinite; /* Изменено направление анимации */
 }
 
 .project-carousel img {
   width: 200px;
   height: 200px;
   object-fit: cover;
-  margin-right: 20px;
+  margin-left: 20px; /* Для отступа между изображениями */
 }
 
-/* Анимация для движения изображений */
-@keyframes scrollLeftToRight {
+/* Анимация для движения изображений слева направо */
+@keyframes scrollRightToLeft {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%); /* Начинаем с правой стороны */
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Перемещаем на левую сторону */
   }
 }
