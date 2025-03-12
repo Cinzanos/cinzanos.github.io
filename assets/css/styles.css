@@ -96,7 +96,6 @@ footer {
   animation: fadeIn 1s ease-out;
 }
 
-/* Анимация для прокрутки изображений слева направо */
 .project-carousel {
   display: flex;
   overflow: hidden;
@@ -106,22 +105,22 @@ footer {
 
 .project-carousel-inner {
   display: flex;
-  animation: scrollRightToLeft 30s linear infinite; /* Изменено направление анимации */
+  animation: scrollRightToLeft 30s linear infinite;
 }
 
 .project-carousel img {
   width: 200px;
   height: 200px;
   object-fit: cover;
-  margin-left: 20px; /* Для отступа между изображениями */
+  margin-left: 20px; 
 }
 
-/* Анимация для движения изображений слева направо */
+
 @keyframes scrollRightToLeft {
   0% {
-    transform: translateX(100%); /* Начинаем с правой стороны */
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%); /* Перемещаем на левую сторону */
+    transform: translateX(-100%);
   }
 }
