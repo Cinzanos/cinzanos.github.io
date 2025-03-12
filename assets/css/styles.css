@@ -96,7 +96,7 @@ footer {
   animation: fadeIn 1s ease-out;
 }
 
-/* Анимация для прокрутки изображений слева направо */
+/* Анимация для движения картинок по кругу */
 .project-carousel {
   display: flex;
   overflow: hidden;
@@ -106,7 +106,6 @@ footer {
 
 .project-carousel-inner {
   display: flex;
-  animation: scrollLeftToRight 30s linear infinite;
 }
 
 .project-carousel img {
@@ -114,9 +113,11 @@ footer {
   height: 200px;
   object-fit: cover;
   margin-right: 20px;
+  opacity: 1;
+  animation: scrollLeftToRight 15s linear infinite, fadeOut 3s linear forwards; /* Добавляем две анимации */
 }
 
-/* Анимация для движения изображений */
+/* Анимация для движения изображений слева направо */
 @keyframes scrollLeftToRight {
   0% {
     transform: translateX(0);
@@ -124,4 +125,30 @@ footer {
   100% {
     transform: translateX(-100%);
   }
+}
+
+/* Анимация для исчезания изображений по очереди */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Добавление задержки для каждого изображения */
+.project-carousel img:nth-child(1) {
+  animation-delay: 0s; /* Первая картинка без задержки */
+}
+
+.project-carousel img:nth-child(2) {
+  animation-delay: 5s; /* Вторая картинка появляется с задержкой */
+}
+
+.project-carousel img:nth-child(3) {
+  animation-delay: 10s; /* Третья картинка появляется с задержкой */
 }
