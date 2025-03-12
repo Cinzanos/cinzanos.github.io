@@ -1,0 +1,18 @@
+title: CINDEV       # Название сайта (показывается на вкладке браузера)
+description: Портфолио бэкенд-разработчика
+author: Cinzanos
+
+# Убирает .html из URL-адресов (например, /projects вместо /projects.html)
+permalink: pretty               
+
+# Указывает корневой URL сайта (пустой, если сайт на основном домене)
+baseurl: ""                    
+
+# Полный URL твоего сайта
+url: "https://cinzanos.github.io"  
+
+# Исключение ненужных файлов (необязательно, но полезно)
+exclude:
+  - README.md
+  - node_modules
+  - .git
