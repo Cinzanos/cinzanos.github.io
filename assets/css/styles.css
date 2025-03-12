@@ -114,22 +114,22 @@ footer {
 
 .project-carousel-inner {
   display: flex;
-  animation: scrollRightToLeft 30s linear infinite;
+  animation: scrollLeftToRight 30s linear infinite;
 }
 
 .project-carousel img {
   width: 200px;
   height: 200px;
   object-fit: cover;
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 @keyframes scrollLeftToRight {
   0% {
-    transform: translateX(0);
+    transform: translateX(-100%);
   }
   100% {
-    transform: translateX(200%);
+    transform: translateX(100%); 
   }
 }
 
