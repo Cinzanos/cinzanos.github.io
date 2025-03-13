@@ -1,0 +1,174 @@
+---
+layout: base
+title: Документация BlogAPI
+---
+
+<div class="container">
+    <h1>Документация проекта BlogAPI</h1>
+
+    <h2>О проекте</h2>
+    <p>BlogAPI — это мощное решение для управления постами, комментариями и лайками в блоге. Проект разработан с использованием Django и предоставляет безопасную аутентификацию через JWT-токены.</p>
+
+    <hr>
+
+    <h2>Обзор</h2>
+    <p>Данный проект представляет собой блог на основе Django, предоставляющий API для управления постами, комментариями, лайками и аутентификацией с использованием JWT-токенов.</p>
+
+    <hr>
+
+    <h2>Технологии</h2>
+    <ul>
+        <li>Python 3.12+</li>
+        <li>Django 5.1.6+</li>
+        <li>Django REST Framework</li>
+        <li>Redis (для кеширования)</li>
+        <li>drf-yasg (Swagger для документации API)</li>
+    </ul>
+
+    <hr>
+
+    <h2>Установка</h2>
+
+    <h3>Требования</h3>
+    <ul>
+        <li>Python 3.12+</li>
+        <li>Django 5.1.6+</li>
+        <li>Redis (для кеширования)</li>
+    </ul>
+
+    <h3>Шаги по установке</h3>
+    <ol>
+        <li>Клонируйте репозиторий:<br>
+            <pre><code>git clone <repository_url>
+cd blog_project
+            </code></pre>
+        </li>
+
+        <li>Создайте и активируйте виртуальное окружение:<br>
+            <pre><code>
+python -m venv venv
+source venv/bin/activate  # Для Linux/MacOS
+.\venv\Scripts\activate  # Для Windows
+            </code></pre>
+        </li>
+
+        <li>Установите зависимости:<br>
+            <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+
+        <li>Примените миграции базы данных:<br>
+            <pre><code>python manage.py migrate</code></pre>
+        </li>
+
+        <li>Создайте суперпользователя:<br>
+            <pre><code>python manage.py createsuperuser</code></pre>
+        </li>
+
+        <li>Запустите сервер разработки:<br>
+            <pre><code>python manage.py runserver</code></pre>
+        </li>
+
+        <li>Откройте приложение по адресу <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></li>
+    </ol>
+
+    <hr>
+
+    <h2>Основные зависимости</h2>
+    <pre>
+asgiref==3.8.1
+colorama==0.4.6
+Django==5.1.6
+django-filter==25.1
+django-redis==5.4.0
+djangorestframework==3.15.2
+djangorestframework_simplejwt==5.4.0
+drf-yasg==1.21.10
+inflection==0.5.1
+iniconfig==2.0.0
+packaging==24.2
+pluggy==1.5.0
+PyJWT==2.10.1
+pytest==8.3.4
+pytest-django==4.10.0
+pytz==2025.1
+PyYAML==6.0.2
+redis==5.2.1
+sqlparse==0.5.3
+tzdata==2025.1
+uritemplate==4.1.1
+    </pre>
+
+    <hr>
+
+    <h2>Конфигурация</h2>
+    <p>Создайте файл <code>.env</code> в корневой директории и добавьте следующие параметры:</p>
+
+    <pre>
+SECRET_KEY=<your_django_secret_key>
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+DATABASE_URL=sqlite:///db.sqlite3
+REDIS_URL=redis://127.0.0.1:6379/1
+    </pre>
+
+    <hr>
+
+    <h2>Функциональность</h2>
+    <ul>
+        <li>CRUD-операции для постов и комментариев</li>
+        <li>Лайки/дизлайки</li>
+        <li>JWT-аутентификация</li>
+        <li>Пагинация</li>
+        <li>Кеширование через Redis</li>
+    </ul>
+
+    <hr>
+
+    <h2>API Эндпоинты</h2>
+    <ul>
+        <li>**GET** `/api/posts/` — Список всех постов</li>
+        <li>**POST** `/api/posts/` — Создать новый пост</li>
+        <li>**GET** `/api/post/<int:pk>/` — Получить детали поста</li>
+        <li>**PUT** `/api/post_edit/<int:pk>/` — Редактировать пост</li>
+        <li>**DELETE** `/api/post_edit/<int:pk>/` — Удалить пост</li>
+    </ul>
+
+    <hr>
+
+    <h2>Swagger Документация</h2>
+    <p>Для просмотра документации API перейдите по ссылке:</p>
+    <pre><code>http://localhost:8000/swagger/</code></pre>
+
+    <hr>
+
+    <h2>Админ-панель</h2>
+    <pre><code>http://localhost:8000/admin/</code></pre>
+
+    <hr>
+
+    <h2>Запуск тестов</h2>
+    <pre><code>python manage.py test</code></pre>
+
+    <hr>
+
+    <h2>Проблемы с миграциями</h2>
+    <pre>
+python manage.py makemigrations
+python manage.py migrate --fake
+    </pre>
+
+    <hr>
+
+    <h2>Будущие улучшения</h2>
+    <ul>
+        <li>Реализация детализированного логирования</li>
+        <li>Добавление полного покрытия юнит-тестами и интеграционными тестами</li>
+        <li>Оптимизация стратегий кеширования для популярных эндпоинтов</li>
+    </ul>
+
+    <hr>
+
+    <h2>Контакты</h2>
+    <p>GitHub: <a href="https://github.com/Cinzanos" target="_blank">Cinzanos</a></p>
+    <p>Email: cinzanos123@gmail.com</p>
+</div>
