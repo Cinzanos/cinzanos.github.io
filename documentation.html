@@ -5,17 +5,19 @@ title: Документация проекта
 
 <div class="container">
     <h1>Документация проекта</h1>
-        <!-- Здесь будет отображаться README -->
-        <div id="readme-content"></div>
+    <div id="readme-content"></div> <!-- Здесь будет отображаться README -->
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- Подключаем библиотеку для преобразования MD в HTML -->
+
 <script>
-  // Функция для загрузки и отображения README.md
   window.onload = function() {
+    // Получаем параметр repo из URL
     const urlParams = new URLSearchParams(window.location.search);
     const repo = urlParams.get('repo'); // Получаем имя репозитория из URL
 
     if (repo) {
-      // Формируем URL для чтения README.md
+      // Формируем URL для загрузки README.md
       const readmeUrl = `https://raw.githubusercontent.com/Cinzanos/${repo}/main/README.md`;
 
       // Загружаем README.md через fetch
@@ -23,7 +25,7 @@ title: Документация проекта
         .then(response => response.text())
         .then(data => {
           const readmeContent = document.getElementById('readme-content');
-          readmeContent.innerHTML = `<pre>${data}</pre>`; // Отображаем содержимое README
+          readmeContent.innerHTML = marked(data); // Преобразуем Markdown в HTML и отображаем
         })
         .catch(error => {
           document.getElementById('readme-content').innerHTML = "Не удалось загрузить документацию.";
@@ -34,3 +36,4 @@ title: Документация проекта
     }
   }
 </script>
+
