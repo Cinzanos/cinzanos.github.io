@@ -8,6 +8,35 @@ title: Мои проекты
       <h3>BlogAPI</h3>
       <p>Проект представляет собой блог на основе Django(DRF)</p>
       <a href="https://github.com/Cinzanos/BlogAPI" target="_blank">GitHub</a>
+      <button class="read-more-btn" onclick="loadReadMe()">Документация</button>
+      <div id="readme-content" style="display:none;">
+      <pre id="readme-text"></pre>
+      </div>
     </div>
   </div>
-</div> 
+</div>
+
+<script>
+  function loadReadMe() {
+    const readmeContent = document.getElementById('readme-content');
+    const readmeText = document.getElementById('readme-text');
+
+    // Проверим, был ли уже загружен контент
+    if (readmeContent.style.display === "none") {
+      // Загружаем README.md через fetch (если он доступен на сервере или в репозитории)
+      fetch('https://github.com/Cinzanos/BlogAPI/blob/main/README.md')
+        .then(response => response.text())
+        .then(data => {
+          readmeText.textContent = data;  // Отображаем содержимое README
+          readmeContent.style.display = "block";  // Показываем блок с контентом
+        })
+        .catch(error => {
+          console.error("Ошибка загрузки README:", error);
+          readmeText.textContent = "Не удалось загрузить документацию.";
+          readmeContent.style.display = "block";
+        });
+    } else {
+      readmeContent.style.display = "none";  // Скрываем содержимое при повторном нажатии
+    }
+  }
+</script>
