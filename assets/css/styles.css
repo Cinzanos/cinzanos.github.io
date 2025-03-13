@@ -313,6 +313,7 @@ code {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
   text-decoration: none;
+  z-index: 9999;
 }
 
 .scroll-to-top:hover {
