@@ -240,18 +240,6 @@ ol li {
   margin-bottom: 10px; /* Отступ между шагами для читаемости */
 }
 
-/* Стилизация блоков кода */
-pre {
-  background-color: #1e1e1e; /* Темный фон */
-  color: #e0e0e0; /* Светлый текст */
-  padding: 10px;
-  border-radius: 8px;
-  overflow-x: auto; /* Прокрутка при необходимости */
-  white-space: pre-wrap; /* Перенос строк для удобства */
-  text-align: left; /* Выравнивание текста слева */
-  word-break: break-word; /* Перенос длинных слов */
-}
-
 /* Стилизация тега <code> внутри <pre> */
 code {
   font-family: 'Courier New', monospace; /* Моноширинный шрифт для кода */
