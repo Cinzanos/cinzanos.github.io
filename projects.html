@@ -24,7 +24,7 @@ title: Мои проекты
     // Проверим, был ли уже загружен контент
     if (readmeContent.style.display === "none") {
       // Загружаем README.md через fetch (если он доступен на сервере или в репозитории)
-      fetch('https://github.com/Cinzanos/BlogAPI/blob/main/README.md')
+      fetch('https://raw.githubusercontent.com/Cinzanos/BlogAPI/main/README.md')
         .then(response => response.text())
         .then(data => {
           readmeText.textContent = data;  // Отображаем содержимое README
