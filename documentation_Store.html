@@ -1,0 +1,181 @@
+---
+layout: base
+title: Документация Store
+---
+
+<div class="container">
+            <h1>Документация проекта "Store"</h1>
+            
+            <h2>1. Описание проекта</h2>
+            <p>Этот проект представляет собой интернет-магазин, который предоставляет пользователям возможность покупать товары через корзину. Пользователи могут авторизоваться через стандартную форму или с помощью социальных аккаунтов (через GitHub).</p>
+            <hr>
+            <h3>Основные возможности:</h3>
+            <ul>
+                <li>Категории продуктов.</li>
+                <li>Просмотр, добавление и удаление продуктов из корзины.</li>
+                <li>Регистрация и авторизация пользователей.</li>
+                <li>Интеграция с GitHub для аутентификации через OAuth.</li>
+            </ul>
+            <hr>
+            <h2>Технологии</h2>
+            <ul>
+                <li>Django 3.2.12</li>
+                <li>PostgreSQL</li>
+                <li>HTML/CSS/JS для фронтенда</li>
+                <li>Allauth для аутентификации</li>
+                <li>GitHub OAuth для входа через сторонние сервисы</li>
+            </ul>
+            <hr>
+            <h2>Зависимости</h2>
+            <pre>
+pillow==11.0.0
+pip==24.2
+pytz==2024.2
+isort==5.13.2
+Django==5.1.4
+asgiref==3.8.1
+sqlparse==0.5.3
+psycopg2==2.9.10
+requests==2.32.3
+flake8==7.1.1
+pyflakes==3.2.0
+pycodestyle==2.12.1
+django-allauth==65.3.1
+certifi==2024.12.14
+urllib3==2.3.0
+idna==3.10
+charset-normalizer==3.4.1
+            </pre>
+            <h2>2. Установка</h2>
+            <h2>Требования</h2>
+            <ul>
+                <li>Python 3.12+</li>
+                <li>Django 5.1.6+</li>
+            </ul>
+            <hr>
+            <h2>Шаги по установке</h2>
+            <ol>
+                <li>Клонируйте репозиторий:
+                    <pre><code>git clone &lt;repository_url&gt;
+cd store</code></pre>
+                </li>
+                <li>Создайте и активируйте виртуальное окружение:
+                    <pre><code>python -m venv venv
+source venv/bin/activate  # Для Linux/MacOS
+.\venv\Scripts\activate  # Для Windows</code></pre>
+                </li>
+                <li>Установите зависимости:
+                    <pre><code>pip install -r requirements.txt</code></pre>
+                </li>
+                <li>Установите PostgreSQL:
+                    <pre><code>sudo apt-get install postgresql</code></pre>
+                </li>
+                <li>Создайте базу данных и пользователя, затем настройте параметры подключения в файле settings.py:
+                    <pre><code>DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'store_db', # заменить имя бд
+        'USER': 'store_username', # заменить на имя пользователя для бд
+        'PASSWORD': 'store', # заменить на пароль к бд
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}</code></pre>
+                </li>
+                <li>Работа с базой данных:
+                    <pre><code>python manage.py makemigrations
+python manage.py migrate</code></pre>
+                </li>
+                <li>Настройка фикстур:
+                    <pre><code>python manage.py loaddata store/products/fixtures/categories.json store/products/fixtures/goods.json</code></pre>
+                </li>
+                <li>Создайте суперпользователя:
+                    <pre><code>python manage.py createsuperuser</code></pre>
+                </li>
+                <li>OAuth с GitHub:
+                    <pre><code>SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'SCOPE': ['user', 'repo', 'read:org'],
+        'APP': {
+            'client_id': 'clien_id',  # Заменить на реальный client_id
+            'secret': 'secret_key',  # Заменить на реальный secret_key
+            'key': 'github',
+        }
+    }
+}</code></pre>
+                </li>
+                <li>Запустите сервер разработки:
+                    <pre><code>python manage.py runserver</code></pre>
+                </li>
+                <li>Сайт будет доступен по адресу: [http://localhost:8000](http://localhost:8000)</li>
+            </ol>
+            <h2>3. Модели</h2>
+            <h2>3.1 `users/models.py`</h2>
+            <p>Модели, связанные с пользователями и их аутентификацией.</p>
+            <pre><code>class User(AbstractUser):
+    image = models.ImageField(upload_to='users_images', null=True, blank=True)
+    is_verified_email = models.BooleanField(default=False)</code></pre>
+            <pre><code>class EmailVerification(models.Model):
+    code = models.UUIDField(unique=True)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    expiration = models.DateTimeField()</code></pre>
+
+            <h2>3.2 `products/models.py`</h2>
+            <p>Модели, связанные с продуктами и корзиной.</p>
+            <pre><code>class Product(models.Model):
+    name = models.CharField(max_length=256)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    quantity = models.PositiveIntegerField(default=0)
+    image = models.ImageField(upload_to='products_images')
+    category = models.ForeignKey(to=ProductCategory, on_delete=models.CASCADE)</code></pre>
+            <pre><code>class Basket(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
+    quantity = models.PositiveSmallIntegerField(default=0)
+    created_timestamp = models.DateTimeField(auto_now_add=True)
+
+    def sum(self):
+        return self.product.price * self.quantity</code></pre>
+
+            <h2>4. URL-маршруты</h2>
+            <h2>4.1 URL-маршруты для товаров (`products/urls.py`)</h2>
+            <pre><code>urlpatterns = [
+    path('', ProductsListView.as_view(), name='index'),
+    path('category/<int:category_id>/', ProductsListView.as_view(), name='category'),
+    path('page/<int:page>/', ProductsListView.as_view(), name='paginator'),
+    path('baskets/add/<int:product_id>/', basket_add, name='basket_add'),
+    path('baskets/remove/<int:basket_id>/', basket_remove, name='basket_remove'),
+]</code></pre>
+            <h2>4.2 URL-маршруты для пользователей(`users/urls.py`)</h2>
+            <pre><code>urlpatterns = [
+    path('login/', UserLoginView.as_view(), name='login'),
+    path('registration/', UserRegistrationView.as_view(), name='registration'),
+    path('profile/<int:pk>/', login_required(UserProfileView.as_view()), name='profile'),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    path('verify/<str:email>/<uuid:code>/', EmailVerificationView.as_view(), name='email_verification'),
+]</code></pre>
+            <h2>5. Аутентификация</h2>
+            <p>Проект поддерживает как стандартную аутентификацию через форму, так и аутентификацию через социальные сети (GitHub). Вся аутентификация на сайте обеспечивается библиотекой <code>django-allauth</code>.</p>
+
+            <h2>6. API и маршруты</h2>
+            <ul>
+                <li>/products/ — список продуктов.</li>
+                <li>/basket/ — корзина пользователя.</li>
+                <li>/users/login/ — страница для входа пользователя.</li>
+                <li>/users/register/ — страница для регистрации пользователя.</li>
+            </ul>
+
+            <h2>7. Формы пользователей</h2>
+            <p>Формы для аутентификации, регистрации и редактирования профиля.</p>
+            <pre><code>class UserRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите имя"}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите фамилию"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите имя пользователя"}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите адрес эл. почты"}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите пароль"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите повторно пароль"}))
+    </code></pre>
+
+</div>
