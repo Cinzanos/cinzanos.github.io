@@ -5,6 +5,8 @@ title: Документация Store
 
 <div class="projects-container">
             <h1>Документация проекта "Store"</h1>
+
+            <hr>
             
             <h2>1. Описание проекта</h2>
             <p>Этот проект представляет собой интернет-магазин, который предоставляет пользователям возможность покупать товары через корзину. Пользователи могут авторизоваться через стандартную форму или с помощью социальных аккаунтов (через GitHub).</p>
@@ -59,17 +61,21 @@ charset-normalizer==3.4.1
                     <pre><code>git clone &lt;repository_url&gt;
 cd store</code></pre>
                 </li>
+                <hr>
                 <li>Создайте и активируйте виртуальное окружение:
                     <pre><code>python -m venv venv
 source venv/bin/activate  # Для Linux/MacOS
 .\venv\Scripts\activate  # Для Windows</code></pre>
                 </li>
+                <hr>
                 <li>Установите зависимости:
                     <pre><code>pip install -r requirements.txt</code></pre>
                 </li>
+                <hr>
                 <li>Установите PostgreSQL:
                     <pre><code>sudo apt-get install postgresql</code></pre>
                 </li>
+                <hr>
                 <li>Создайте базу данных и пользователя, затем настройте параметры подключения в файле settings.py:
                     <pre><code>DATABASES = {
     'default': {
@@ -82,16 +88,20 @@ source venv/bin/activate  # Для Linux/MacOS
     }
 }</code></pre>
                 </li>
+                <hr>
                 <li>Работа с базой данных:
                     <pre><code>python manage.py makemigrations
 python manage.py migrate</code></pre>
                 </li>
+                <hr>
                 <li>Настройка фикстур:
                     <pre><code>python manage.py loaddata store/products/fixtures/categories.json store/products/fixtures/goods.json</code></pre>
                 </li>
+                <hr>
                 <li>Создайте суперпользователя:
                     <pre><code>python manage.py createsuperuser</code></pre>
                 </li>
+                <hr>
                 <li>OAuth с GitHub:
                     <pre><code>SOCIALACCOUNT_PROVIDERS = {
     'github': {
@@ -104,11 +114,14 @@ python manage.py migrate</code></pre>
     }
 }</code></pre>
                 </li>
+                <hr>
                 <li>Запустите сервер разработки:
                     <pre><code>python manage.py runserver</code></pre>
                 </li>
+                <hr>
                 <li>Сайт будет доступен по адресу: [http://localhost:8000](http://localhost:8000)</li>
             </ol>
+            <hr>
             <h2>3. Модели</h2>
             <h2>3.1 `users/models.py`</h2>
             <p>Модели, связанные с пользователями и их аутентификацией.</p>
@@ -120,6 +133,7 @@ python manage.py migrate</code></pre>
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     expiration = models.DateTimeField()</code></pre>
+            <hr>
 
             <h2>3.2 `products/models.py`</h2>
             <p>Модели, связанные с продуктами и корзиной.</p>
@@ -138,6 +152,7 @@ python manage.py migrate</code></pre>
 
     def sum(self):
         return self.product.price * self.quantity</code></pre>
+            <hr>
 
             <h2>4. URL-маршруты</h2>
             <h2>4.1 URL-маршруты для товаров (`products/urls.py`)</h2>
@@ -148,6 +163,7 @@ python manage.py migrate</code></pre>
     path('baskets/add/<int:product_id>/', basket_add, name='basket_add'),
     path('baskets/remove/<int:basket_id>/', basket_remove, name='basket_remove'),
 ]</code></pre>
+            <hr>
             <h2>4.2 URL-маршруты для пользователей(`users/urls.py`)</h2>
             <pre><code>urlpatterns = [
     path('login/', UserLoginView.as_view(), name='login'),
@@ -156,8 +172,11 @@ python manage.py migrate</code></pre>
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('verify/<str:email>/<uuid:code>/', EmailVerificationView.as_view(), name='email_verification'),
 ]</code></pre>
+            <hr>
+
             <h2>5. Аутентификация</h2>
             <p>Проект поддерживает как стандартную аутентификацию через форму, так и аутентификацию через социальные сети (GitHub). Вся аутентификация на сайте обеспечивается библиотекой <code>django-allauth</code>.</p>
+            <hr>
 
             <h2>6. API и маршруты</h2>
             <ul>
@@ -166,6 +185,7 @@ python manage.py migrate</code></pre>
                 <li>/users/login/ — страница для входа пользователя.</li>
                 <li>/users/register/ — страница для регистрации пользователя.</li>
             </ul>
+            <hr>
 
             <h2>7. Формы пользователей</h2>
             <p>Формы для аутентификации, регистрации и редактирования профиля.</p>
@@ -177,5 +197,19 @@ python manage.py migrate</code></pre>
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите пароль"}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите повторно пароль"}))
     </code></pre>
+            <hr>
 
+            <h2>Планируемые улучшения</h2>
+            <ul>
+                <li>Рассылка на email — планируется добавить функциональность отправки писем для подтверждения почты.</li>
+                <li>Тесты — проекту требуется покрытие тестами для повышения надежности.</li>
+                <li>Кеширование — добавление кеширования для улучшения производительности.</li>
+                <li>Фоновые задачи — планируется внедрение Celery для обработки задач в фоновом режиме.</li>
+                <li>Страница заказов — необходимо реализовать отдельную страницу для управления заказами пользователей</li>
+                <li>Исправление подсчета суммы в профиле — на данный момент сумма увеличивается только при многократном добавлении товаров из каталога. Необходимо реализовать корректный пересчет внутри профиля.</li>
+            </ul>
+            <hr>
+
+            <h2>Заключение</h2>
+            <p>Этот проект на базе Django позволяет пользователям просматривать товары, управлять корзинами и выполнять другие типичные действия для интернет-магазина. Социальная аутентификация через GitHub и кастомные модели пользователей обеспечивают безопасность и настраиваемость.</p>
 </div>
