@@ -19,24 +19,25 @@ title: Документация BlogAPI
     <hr>
 
     <h2>Технологии</h2>
-    <ul>
+    <ol>
         <li>Python 3.12+</li>
         <li>Django 5.1.6+</li>
         <li>Django REST Framework</li>
         <li>Redis (для кеширования)</li>
         <li>drf-yasg (Swagger для документации API)</li>
-    </ul>
+    </ol>
 
     <hr>
 
     <h2>Установка</h2>
 
     <h3>Требования</h3>
-    <ul>
+    <ol>
         <li>Python 3.12+</li>
         <li>Django 5.1.6+</li>
         <li>Redis (для кеширования)</li>
-    </ul>
+    </ol>
+    <hr>
 
     <h3>Шаги по установке</h3>
     <ol>
@@ -116,24 +117,24 @@ REDIS_URL=redis://127.0.0.1:6379/1
     <hr>
 
     <h2>Основные возможности</h2>
-    <ul>
+    <ol>
         <li>CRUD-операции для постов и комментариев</li>
         <li>Лайки/дизлайки</li>
         <li>JWT-аутентификация</li>
         <li>Пагинация</li>
         <li>Кеширование через Redis</li>
-    </ul>
+    </ol>
 
     <hr>
 
     <h2>API Эндпоинты</h2>
-    <ul>
+    <ol>
         <li>**GET** `/api/posts/` — Список всех постов</li>
         <li>**POST** `/api/posts/` — Создать новый пост</li>
         <li>**GET** `/api/post/<int:pk>/` — Получить детали поста</li>
         <li>**PUT** `/api/post_edit/<int:pk>/` — Редактировать пост</li>
         <li>**DELETE** `/api/post_edit/<int:pk>/` — Удалить пост</li>
-    </ul>
+    </ol>
 
     <hr>
 
