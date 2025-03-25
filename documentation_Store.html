@@ -122,84 +122,12 @@ python manage.py migrate</code></pre>
                 <li>Сайт будет доступен по адресу: [http://localhost:8000](http://localhost:8000)</li>
             </ol>
             <hr>
-            <h2>3. Модели</h2>
-            <h2>3.1 `users/models.py`</h2>
-            <p>Модели, связанные с пользователями и их аутентификацией.</p>
-            <pre><code>class User(AbstractUser):
-    image = models.ImageField(upload_to='users_images', null=True, blank=True)
-    is_verified_email = models.BooleanField(default=False)</code></pre>
-            <pre><code>class EmailVerification(models.Model):
-    code = models.UUIDField(unique=True)
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    expiration = models.DateTimeField()</code></pre>
-            <hr>
 
-            <h2>3.2 `products/models.py`</h2>
-            <p>Модели, связанные с продуктами и корзиной.</p>
-            <pre><code>class Product(models.Model):
-    name = models.CharField(max_length=256)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to='products_images')
-    category = models.ForeignKey(to=ProductCategory, on_delete=models.CASCADE)</code></pre>
-            <pre><code>class Basket(models.Model):
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
-    quantity = models.PositiveSmallIntegerField(default=0)
-    created_timestamp = models.DateTimeField(auto_now_add=True)
-
-    def sum(self):
-        return self.product.price * self.quantity</code></pre>
-            <hr>
-
-            <h2>4. URL-маршруты</h2>
-            <h2>4.1 URL-маршруты для товаров (`products/urls.py`)</h2>
-            <pre><code>urlpatterns = [
-    path('', ProductsListView.as_view(), name='index'),
-    path('category/<int:category_id>/', ProductsListView.as_view(), name='category'),
-    path('page/<int:page>/', ProductsListView.as_view(), name='paginator'),
-    path('baskets/add/<int:product_id>/', basket_add, name='basket_add'),
-    path('baskets/remove/<int:basket_id>/', basket_remove, name='basket_remove'),
-]</code></pre>
-            <hr>
-            <h2>4.2 URL-маршруты для пользователей(`users/urls.py`)</h2>
-            <pre><code>urlpatterns = [
-    path('login/', UserLoginView.as_view(), name='login'),
-    path('registration/', UserRegistrationView.as_view(), name='registration'),
-    path('profile/<int:pk>/', login_required(UserProfileView.as_view()), name='profile'),
-    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
-    path('verify/<str:email>/<uuid:code>/', EmailVerificationView.as_view(), name='email_verification'),
-]</code></pre>
-            <hr>
-
-            <h2>5. Аутентификация</h2>
+            <h2>3. Аутентификация</h2>
             <p>Проект поддерживает как стандартную аутентификацию через форму, так и аутентификацию через социальные сети (GitHub). Вся аутентификация на сайте обеспечивается библиотекой <code>django-allauth</code>.</p>
             <hr>
 
-            <h2>6. API и маршруты</h2>
-            <ul>
-                <li>/products/ — список продуктов.</li>
-                <li>/basket/ — корзина пользователя.</li>
-                <li>/users/login/ — страница для входа пользователя.</li>
-                <li>/users/register/ — страница для регистрации пользователя.</li>
-            </ul>
-            <hr>
-
-            <h2>7. Формы пользователей</h2>
-            <p>Формы для аутентификации, регистрации и редактирования профиля.</p>
-            <pre><code>class UserRegistrationForm(UserCreationForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите имя"}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите фамилию"}))
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите имя пользователя"}))
-    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите адрес эл. почты"}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите пароль"}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control py-4', 'placeholder': "Введите повторно пароль"}))
-    </code></pre>
-            <hr>
-
-            <h2>Планируемые улучшения</h2>
+            <h2>4. Планируемые улучшения</h2>
             <ul>
                 <li>Рассылка на email — планируется добавить функциональность отправки писем для подтверждения почты.</li>
                 <li>Тесты — проекту требуется покрытие тестами для повышения надежности.</li>
@@ -212,4 +140,9 @@ python manage.py migrate</code></pre>
 
             <h2>Заключение</h2>
             <p>Этот проект на базе Django позволяет пользователям просматривать товары, управлять корзинами и выполнять другие типичные действия для интернет-магазина. Социальная аутентификация через GitHub и кастомные модели пользователей обеспечивают безопасность и настраиваемость.</p>
+            <hr>
+
+            <h2>Контакты</h2>
+            <p>GitHub: <a href="https://github.com/Cinzanos" target="_blank">Cinzanos</a></p>
+            <p>Email: cinzanos123@gmail.com</p>
 </div>
