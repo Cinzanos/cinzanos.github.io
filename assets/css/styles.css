@@ -37,6 +37,12 @@ header a:hover {
   flex: 1; /* Заставляет контейнер занимать все оставшееся пространство */
 }
 
+.projects-container {
+  padding-top: 80px;
+  text-align: left;
+  flex: 1; /* Заставляет контейнер занимать все оставшееся пространство */
+}
+
 h1 {
   font-size: 48px;
   margin-bottom: 20px;
