@@ -245,8 +245,8 @@ footer {
 
 .project-carousel-wrapper {
   display: flex;
-  width: fit-content;
-  animation: scrollInfinite 40s linear infinite;
+  width: max-content;
+  animation: scrollInfinite 30s linear infinite;
   will-change: transform;
 }
 
@@ -255,6 +255,7 @@ footer {
   flex-shrink: 0;
   gap: 20px;
   padding: 0 20px;
+  width: max-content;
 }
 
 .project-carousel img {
@@ -265,6 +266,7 @@ footer {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   flex-shrink: 0;
+  display: block;
 }
 
 .project-carousel img:hover {
