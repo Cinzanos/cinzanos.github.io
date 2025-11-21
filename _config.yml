@@ -1,5 +1,5 @@
 title: CINDEV       # Название сайта (показывается на вкладке браузера)
-description: Портфолио бэкенд-разработчика
+description: Портфолио fullstack-разработчика
 author: Cinzanos
 
 # Убирает .html из URL-адресов (например, /projects вместо /projects.html)
@@ -10,6 +10,10 @@ baseurl: ""
 
 # Полный URL твоего сайта
 url: "https://cinzanos.github.io"  
+
+# Поддержка языков
+languages: ["ru", "en"]
+default_lang: "ru"
 
 # Исключение ненужных файлов (необязательно, но полезно)
 exclude:
